@@ -10,7 +10,7 @@ import (
 )
 
 
-// ParsePackage Parse the package of fileName with parse.Mode
+// ParsePackage Parse the package of a file with parse.Mode
 func ParsePackage(fileName string, mode parser.Mode) (*ast.Package, error) {
 	fset := token.NewFileSet()
 	parsedAst, err := parser.ParseFile(fset, fileName, nil, mode)
@@ -43,7 +43,7 @@ func ParsePackageDir(fileDir string, mode parser.Mode) (*ast.Package, error) {
 	return pkg, nil
 }
 
-// ParsePackageDoc Parse the package of path with parse.Mode
+// ParsePackageDoc Parse the package by path
 func ParsePackageDoc(path string) (*doc.Package, error) {
 	if s, err := os.Stat(path); err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func ParsePackageDoc(path string) (*doc.Package, error) {
 	}
 }
 
-// ParsePackageDocFile Parse the package of a file in directory with parse.Mode
+// ParsePackageDocFile Parse the package of a file
 func ParsePackageDocFile(fileName string) (*doc.Package, error) {
 	pkg, err := ParsePackage(fileName, parser.ParseComments)
 	if err != nil {
@@ -63,7 +63,7 @@ func ParsePackageDocFile(fileName string) (*doc.Package, error) {
 	return doc.New(pkg, "/", doc.AllDecls), nil
 }
 
-// ParsePackageDocDir Parse the package of all files in directory with parse.Mode
+// ParsePackageDocDir Parse the package of all files in directory
 func ParsePackageDocDir(pkgDir string) (*doc.Package, error) {
 	pkg, err := ParsePackageDir(pkgDir, parser.ParseComments)
 	if err != nil {
@@ -72,7 +72,7 @@ func ParsePackageDocDir(pkgDir string) (*doc.Package, error) {
 	return doc.New(pkg, "/", doc.AllDecls), nil
 }
 
-// ParsePackageName Parse the package of path with parse.Mode
+// ParsePackageName Parse the package by path
 func ParsePackageName(path string) (string, error) {
 	if s, err := os.Stat(path); err != nil {
 		return "", err
@@ -83,7 +83,7 @@ func ParsePackageName(path string) (string, error) {
 	}
 }
 
-// ParsePackageNameFile Parse the package name of a file in directory with parse.Mode
+// ParsePackageNameFile Parse the package name of a file
 func ParsePackageNameFile(fileName string) (string, error) {
 	pkg, err := ParsePackage(fileName, parser.PackageClauseOnly)
 	if err != nil {
@@ -92,7 +92,7 @@ func ParsePackageNameFile(fileName string) (string, error) {
 	return pkg.Name, nil
 }
 
-// ParsePackageNameDir Parse the package name of all files in directory with parse.Mode
+// ParsePackageNameDir Parse the package name of all files in directory
 func ParsePackageNameDir(pkgDir string) (string, error) {
 	pkg, err := ParsePackageDir(pkgDir, parser.PackageClauseOnly)
 	if err != nil {
