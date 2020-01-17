@@ -6,6 +6,6 @@ import (
 )
 
 func TestParsePackageName(t *testing.T) {
-	fmt.Println(ParsePackageName("./extract-doc.go"))
+	fmt.Println(ParsePackageName("./parse-doc-at-runtime.go"))
 	fmt.Println(ParsePackageName("./"))
 }

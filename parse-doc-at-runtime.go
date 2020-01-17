@@ -61,7 +61,7 @@ func FuncDescription(f interface{}) (string, error) {
 							} else if m.Comment != nil {
 								return makeDoc(m.Comment.List), nil
 							}
-							return "", ErrorNotFound
+							return "", nil
 						}
 					}
 				}

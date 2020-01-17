@@ -2,7 +2,24 @@ package parser
 
 type PackageMapper func(packageName string) (packagePath string)
 
-var getPackagePath PackageMapper
+
+var mapper map[string]string
+func AddPacakgeMapping(name, path string) {
+	if mapper == nil {
+		mapper = make(map[string]string)
+	}
+	mapper[name] = path
+}
+
+func defaultMapper(packageName string) (packagePath string) {
+	if mapper == nil {
+		return ""
+	}
+	packagePath, _ = mapper[packageName]
+	return
+}
+
+var getPackagePath PackageMapper = defaultMapper
 
 // SetPackageMapper provide package path mapper of a interface's package
 // must set your own package mapper

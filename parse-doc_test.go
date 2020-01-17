@@ -100,3 +100,7 @@ func TestInterfaceDescription(t *testing.T) {
 	var ri RawServiceI = RawService{}
 	fmt.Println(InterfaceDescription(&ri))
 }
+
+func init() {
+	AddPacakgeMapping("github.com/Myriad-Dreamin/go-parse-pacakge", ".")
+}
